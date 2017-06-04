@@ -5,13 +5,14 @@
   "license": "MIT",
   "dependencies": {
     "micro": "^7.2.1",
-    "nodemailer": "^3.1.8"
+    "nodemailer": "^3.1.8",
+    "nodemailer-mailgun-transport": "^1.3.5"
   },
   "devDependencies": {
     "nodemon": "^1.11.0"
   },
   "scripts": {
-    "dev": "AUTH_EMAIL='' AUTH_PASSWORD='' nodemon --exec npm start",
+    "dev": "AUTH_KEY='' AUTH_DOMAIN='' nodemon --exec npm start",
     "start": "micro src/index"
   }
 }
