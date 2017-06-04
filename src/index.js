@@ -2,6 +2,8 @@ const { send, createError, json } = require('micro')
 const { sendMail } = require('./util')
 
 module.exports = async(req, res) => {
+  res.setHeader('Access-Control-Allow-Origin', '*')
+
   try {
     if (req.method !== 'POST') {
       throw createError(405, 'Method Not Allowed.')
@@ -12,7 +14,7 @@ module.exports = async(req, res) => {
     if (!to) {
       throw createError(500, `Missing to address.`)
     }
-    
+
     if (!from) {
       throw createError(500, `Missing from address.`)
     }
