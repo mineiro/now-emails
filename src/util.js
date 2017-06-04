@@ -1,13 +1,13 @@
 const { createTransport } = require('nodemailer')
-const { SERVICE_PROVIDER, AUTH_EMAIL, AUTH_PASSWORD } = process.env
+const { mailgunTransport } = require('nodemailer-mailgun-transport')
+const { AUTH_KEY, AUTH_DOMAIN } = process.env
 
-const transport = createTransport({
-  service: SERVICE_PROVIDER || 'Gmail',
+const transport = createTransport(mailgunTransport({
   auth: {
-    user: AUTH_EMAIL,
-    pass: AUTH_PASSWORD
+    user: AUTH_KEY,
+    pass: AUTH_DOMAIN
   }
-})
+}))
 
 module.exports.sendMail = sendMail
 

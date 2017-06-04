@@ -1,6 +1,5 @@
 const { send, createError, json } = require('micro')
 const { sendMail } = require('./util')
-const { AUTH_EMAIL } = process.env
 
 module.exports = async(req, res) => {
   try {
@@ -8,16 +7,20 @@ module.exports = async(req, res) => {
       throw createError(405, 'Method Not Allowed.')
     }
 
-    const { to, from = AUTH_EMAIL, subject, text, html } = await json(req)
+    const { to, from, subject, text, html } = await json(req)
 
     if (!to) {
       throw createError(500, `Missing to address.`)
     }
     
+    if (!from) {
+      throw createError(500, `Missing from address.`)
+    }
+
     if (!subject) {
       throw createError(500, 'Missing subject.')
     }
-    
+
     if (!text && !html) {
       throw createError(500, 'Missing text or html.')
     }
@@ -29,7 +32,7 @@ module.exports = async(req, res) => {
       text,
       html
     })
-    
+
     send(res, 200, {
       code: 200,
       status: 'success',
