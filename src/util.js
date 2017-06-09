@@ -1,5 +1,9 @@
 const { createTransport } = require('nodemailer')
 const mailgunTransport = require('nodemailer-mailgun-transport')
+const dotenv = require('dotenv')
+
+dotenv.load()
+
 const { AUTH_KEY, AUTH_DOMAIN } = process.env
 
 const transport = createTransport(mailgunTransport({
