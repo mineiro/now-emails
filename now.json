@@ -1,4 +1,5 @@
 {
   "name": "iar-email",
-  "alias": "mail.api.iar.org.br"
+  "alias": "mail.api.iar.org.br",
+  "dotenv": true
 }
